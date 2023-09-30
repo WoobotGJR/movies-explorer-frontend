@@ -1,0 +1,99 @@
+.movies-card {
+  width: 270px;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card {
+    width: 339px;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .movies-card {
+    width: 300px;
+  }
+}
+
+.movies-card__image {
+  width: 270px;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-card__image {
+    width: 339px;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .movies-card__image {
+    width: 300px;
+  }
+}
+
+.movies-card__container {
+  margin: 0 0 2px 0;
+  padding: 0 0 24px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  border-bottom: 1px solid #424242;
+}
+
+.movies-card__movie-title {
+  width: 226px;
+  margin: 12px 0 0 0;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15.73px;
+}
+
+@media screen and (max-width: 674px) {
+  .movies-card__movie-title {
+    margin: 15px 0 0 0;
+
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+
+.movies-card__delete-btn_hidden {
+  display: none;
+}
+
+.movies-card:hover .movies-card__delete-btn_hidden {
+  display: block;
+}
+
+.movies-card__like-btn,
+.movies-card__delete-btn {
+  margin: 8px 0 0 0;
+  width: 10px;
+  height: 8.5px;
+  padding: 8px 7px;
+  background-color: #313131;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 674px) {
+  .movies-card__like-btn,
+  .movies-card__delete-btn {
+    margin: 10px 0 0 0;
+  }
+}
+
+.movies-card__like-btn:hover,
+.movies-card__delete-btn:hover {
+  opacity: 0.8;
+}
+
+.movies-card__film-duration {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13.31px;
+  color: #8b8b8b;
+}

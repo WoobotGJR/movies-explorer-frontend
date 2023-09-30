@@ -1,0 +1,25 @@
+.movies-list {
+  background-color: #202020;
+
+  margin: 0 auto;
+  padding: 70px 70px 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 270px);
+  column-gap: 20px;
+  row-gap: 36px;
+  justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+  .movies-list {
+    padding: 70px 30px 10px;
+    grid-template-columns: repeat(auto-fit, 339px);
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .movies-list {
+    padding: 40px 10px 10px;
+    grid-template-columns: repeat(auto-fit, 300px);
+  }
+}

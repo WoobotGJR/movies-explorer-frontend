@@ -1,0 +1,159 @@
+.header {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  padding: 0 70px;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 0 14px;
+  }
+}
+
+.header_hidden {
+  display: none;
+}
+
+.header_background_blue {
+  background-color: #073042;
+}
+
+.header_background_grey {
+  background-color: #202020;
+}
+
+.header__logo {
+  margin: 18px 0 18px 0;
+}
+
+.header__navigation {
+  display: flex;
+  gap: 16px;
+}
+
+.header__films-link,
+.header__saved-films-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease-in-out;
+
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+  .header__navigation {
+    display: none;
+  }
+}
+
+.header__films-link:hover,
+.header__saved-films-link:hover,
+.header__profile:hover,
+.header__register-link:hover {
+  opacity: 0.7;
+}
+
+.header__profile,
+.header__auth {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin: 0 0 0 auto;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__profile {
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .header__profile {
+    display: none;
+  }
+}
+
+.header__account-link {
+  text-decoration: none;
+  color: inherit;
+
+  font-size: 12px;
+  line-height: 13px;
+  font-weight: 500;
+}
+
+.header__auth {
+  gap: 30px;
+}
+
+.header__register-link {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease-in-out;
+
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.header__auth-btn {
+  width: 76px;
+  height: 32px;
+  background-color: #3ddc84;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+}
+
+.header__auth-btn:hover {
+  opacity: 0.8;
+}
+
+.header__profile-pic {
+  padding: 7.75px 7.81px 7.58px;
+  border-radius: 50%;
+}
+
+.header__profile-pic_background_blue {
+  background-color: #0f4157;
+}
+
+.header__profile-pic_background_grey {
+  background-color: #313131;
+}
+
+.header__menu-btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .header__menu-btn {
+    visibility: visible;
+  }
+}
+
+.header__menu-btn:hover {
+  opacity: 0.8;
+}
