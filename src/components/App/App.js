@@ -11,13 +11,25 @@ import Register from "../Other/Register/Register";
 import Footer from "../Footer/Footer";
 import NotFoundPage from "../Other/NotFoundPage/NotFoundPage";
 import SideMenu from "../Other/SideMenu/SideMenu";
+import { useState } from "react";
 // import { NavLink } from "react-router-dom";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [menuState, setMenuState] = useState(false);
+
+  function showMenu() {
+    setMenuState(true);
+  }
+
+  function hideMenu() {
+    setMenuState(false);
+  }
+
   return (
     <>
       <div className="page">
-        <Header />
+        <Header isLoggedIn={isLoggedIn} showMenu={showMenu} />
         <Routes>
           <Route path="/" element={<Main />}></Route>
           <Route path="/movies" element={<Movies />}></Route>
@@ -30,7 +42,7 @@ function App() {
         <Footer />
       </div>
 
-      <SideMenu />
+      <SideMenu menuState={menuState} hideMenu={hideMenu} />
     </>
   );
 }

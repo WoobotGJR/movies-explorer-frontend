@@ -1,12 +1,12 @@
 .more-button {
-  padding: 50px 70px 80px;
+  padding: 49px 70px 119px;
   display: flex;
   justify-content: center;
 }
 
 @media screen and (max-width: 674px) {
   .more-button {
-    padding: 50px 40px 80px;
+    padding: 50px 40px 120px;
   }
 }
 

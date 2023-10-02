@@ -1,6 +1,6 @@
 .about-project {
   background-color: #202020;
-  padding: 109px 70px;
+  padding: 112px 70px;
 }
 
 @media screen and (max-width: 768px) {
@@ -11,13 +11,13 @@
 
 @media screen and (max-width: 480px) {
   .about-project {
-    padding: 70px 18px;
+    padding: 71px 18px;
   }
 }
 
 .about-project__title {
   margin: 0;
-  padding: 0 0 23px 0;
+  padding: 0 0 22px 0;
   width: 100%;
 
   border-bottom: 1px #dadada solid;
@@ -29,6 +29,7 @@
 
 @media screen and (max-width: 480px) {
   .about-project__title {
+    padding: 0 0 29px 0;
     font-size: 18px;
     line-height: 21.78px;
   }
@@ -54,6 +55,7 @@
   .about-project__description {
     display: flex;
     flex-flow: column;
+    row-gap: 18px;
   }
 }
 
@@ -68,6 +70,9 @@
   font-weight: 400;
   line-height: 24.2px;
   letter-spacing: -0.04em;
+
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 480px) {
@@ -91,6 +96,9 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
+
+  padding: 0;
+  margin: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -110,6 +118,7 @@
 @media screen and (max-width: 570px) {
   .about-project__description-text_weeks {
     order: 2;
+    margin: 0 0 36px 0;
   }
 
   .about-project__description-text_stages {
@@ -126,6 +135,13 @@
   margin: 110px 0 0 0;
 }
 
+@media screen and (max-width: 768px) {
+  .about-project__timeline {
+    grid-template-columns: 1.05fr 4fr;
+    margin: 91px 0 0 0;
+  }
+}
+
 @media screen and (max-width: 540px) {
   .about-project__timeline {
     grid-template-columns: 1fr 1.8fr;
@@ -134,7 +150,9 @@
 
 @media screen and (max-width: 480px) {
   .about-project__timeline {
-    margin-top: 60px;
+    grid-template-rows: 35px;
+    margin-top: 58px;
+    row-gap: 12px;
   }
 }
 
@@ -181,4 +199,9 @@
     font-size: 11px;
     line-height: 13.31px;
   }
+}
+
+.about-project__timeline-paragraph {
+  padding: 0;
+  margin: 0;
 }

@@ -16,7 +16,7 @@
 
 @media screen and (max-width: 768px) {
   .not-found-page__title {
-    margin: 408px 0 0 0;
+    margin: 408px 0 5px 0;
   }
 }
 

@@ -1,22 +1,25 @@
-import './Techs.css'
+import "./Techs.css";
 
 function Techs() {
-    return (
-        <section className='techs'>
-            <h2 className='techs__title'>Технологии</h2>
-            <h3 className='techs__introduction-title'>7 технологий</h3>
-            <p className='techs__description'>На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
-            <div className='techs__dev-stack'>
-                <div className='techs__dev-stack_item'>HTML</div>
-                <div className='techs__dev-stack_item'>CSS</div>
-                <div className='techs__dev-stack_item'>JS</div>
-                <div className='techs__dev-stack_item'>React</div>
-                <div className='techs__dev-stack_item'>Git</div>
-                <div className='techs__dev-stack_item'>Express.js</div>
-                <div className='techs__dev-stack_item'>mongoDB</div>
-            </div>
-        </section>
-    )
+  return (
+    <section className="techs">
+      <h2 className="techs__title">Технологии</h2>
+      <h3 className="techs__introduction-title">7 технологий</h3>
+      <p className="techs__description">
+        На курсе веб-разработки мы освоили технологии, которые применили в
+        дипломном проекте.
+      </p>
+      <ul className="techs__dev-stack">
+        <li className="techs__dev-stack-item">HTML</li>
+        <li className="techs__dev-stack-item">CSS</li>
+        <li className="techs__dev-stack-item">JS</li>
+        <li className="techs__dev-stack-item">React</li>
+        <li className="techs__dev-stack-item">Git</li>
+        <li className="techs__dev-stack-item">Express.js</li>
+        <li className="techs__dev-stack-item">mongoDB</li>
+      </ul>
+    </section>
+  );
 }
 
-export default Techs
+export default Techs;

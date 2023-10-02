@@ -11,6 +11,10 @@
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
 }
 
+.side-menu_visible {
+  visibility: visible;
+}
+
 @media screen and (max-width: 768px) {
   .side-menu {
     width: calc(100% - 248px);
@@ -29,16 +33,16 @@
   background-color: inherit;
   border: none;
   position: absolute;
-  top: 22.4px;
-  right: 22.4px;
+  top: 21.4px;
+  right: 24.8px;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
 }
 
 @media screen and (max-width: 674px) {
   .side-menu__close-btn {
-    top: 20.16px;
-    right: 20.16px;
+    top: 13px;
+    right: 17px;
   }
 }
 
@@ -50,11 +54,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  padding: 159px 0 0 0;
+  gap: 22px;
+  padding: 160px 0 0 0;
   margin: 0;
 
   list-style: none;
+}
+
+@media screen and (max-width: 674px) {
+  .side-menu__navigation-list {
+    padding: 145px 0 0 0;
+    gap: 18px;
+  }
 }
 
 .side-menu__navigation-item {
@@ -78,11 +89,20 @@
   display: flex;
   gap: 7px;
   position: absolute;
-  bottom: 90px;
-  right: calc(50% - 41px);
+  bottom: 91px;
+  right: calc(50% - 49px);
   align-items: center;
   cursor: pointer;
   transition: opacity 0.3s ease-in-out;
+
+  text-decoration: none;
+  color: inherit;
+}
+
+@media screen and (max-width: 674px) {
+  .side-menu__account-container {
+    bottom: 48px;
+  }
 }
 
 .side-menu__account-container:hover {
@@ -101,4 +121,9 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 12px;
+}
+
+.side-menu__navigation-link {
+  text-decoration: none;
+  color: inherit;
 }

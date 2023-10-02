@@ -11,13 +11,13 @@ function Footer() {
     location.pathname === "/saved-movies";
 
   return (
-    <footer className={isVisible ? "footer" : "footer_hidden"}>
+    <footer className={isVisible ? "footer" : "footer footer_hidden"}>
       <h2 className="footer__title">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h2>
       <div className="footer__copyright-container">
         <p className="footer__copyright">&#169; {new Date().getFullYear()}</p>
-        <div className="footer__navigation-container">
+        <nav className="footer__navigation-container">
           <a
             className="footer__navigation-link"
             href="https://practicum.yandex.ru/"
@@ -34,7 +34,7 @@ function Footer() {
           >
             Github
           </a>
-        </div>
+        </nav>
       </div>
     </footer>
   );

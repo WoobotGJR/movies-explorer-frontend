@@ -5,53 +5,56 @@ import arrowButtonImage from "../../../images/arrow-button.svg";
 function Portfolio() {
   return (
     <section className="portfolio">
-      <p4 className="portfolio__title">Портфолио</p4>
-      <div className="portfolio__container">
-        <a
-          className="portfolio__portfolio-item"
-          href="https://github.com/WoobotGJR/russian-travel"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="portfolio__portfolio-item_name">Статичный сайт</div>
-          <button className="portfolio__portfolio-item_btn">
+      <h4 className="portfolio__title">Портфолио</h4>
+      <ul className="portfolio__container">
+        <li className="portfolio__portfolio-item">
+          <a
+            className="portfolio__portfolio-link"
+            href="https://github.com/WoobotGJR/russian-travel"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p className="portfolio__portfolio-item-name">Статичный сайт</p>
             <img
+              className="portfolio__portfolio-item-img"
               src={arrowButtonImage}
               alt="Кнопка перехода на соответствующее портфолио"
             />
-          </button>
-        </a>
-        <a
-          className="portfolio__portfolio-item"
-          href="https://github.com/WoobotGJR/mesto"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="portfolio__portfolio-item_name">Адаптивный сайт</div>
-          <button className="portfolio__portfolio-item_btn">
+          </a>
+        </li>
+        <li className="portfolio__portfolio-item">
+          <a
+            className="portfolio__portfolio-link"
+            href="https://github.com/WoobotGJR/mesto"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p className="portfolio__portfolio-item-name">Адаптивный сайт</p>
             <img
+              className="portfolio__portfolio-item-img"
               src={arrowButtonImage}
               alt="Кнопка перехода на соответствующее портфолио"
             />
-          </button>
-        </a>
-        <a
-          className="portfolio__portfolio-item"
-          href="https://github.com/WoobotGJR/express-mesto-gha"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="portfolio__portfolio-item_name">
-            Одностраничное приложение
-          </div>
-          <button className="portfolio__portfolio-item_btn">
+          </a>
+        </li>
+        <li className="portfolio__portfolio-item">
+          <a
+            className="portfolio__portfolio-link"
+            href="https://github.com/WoobotGJR/express-mesto-gha"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <p className="portfolio__portfolio-item-name">
+              Одностраничное приложение
+            </p>
             <img
+              className="portfolio__portfolio-item-img"
               src={arrowButtonImage}
               alt="Кнопка перехода на соответствующее портфолио"
             />
-          </button>
-        </a>
-      </div>
+          </a>
+        </li>
+      </ul>
     </section>
   );
 }

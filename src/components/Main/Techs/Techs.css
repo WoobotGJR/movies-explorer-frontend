@@ -1,12 +1,12 @@
 .techs {
   background-color: #272727;
 
-  padding: 100px 70px;
+  padding: 99px 70px;
 }
 
 @media screen and (max-width: 768px) {
   .techs {
-    padding: 90px 50px;
+    padding: 93px 50px;
   }
 }
 
@@ -18,7 +18,7 @@
 
 .techs__title {
   margin: 0;
-  padding: 0 0 23px 0;
+  padding: 0 0 22px 0;
   width: 100%;
 
   border-bottom: 1px #dadada solid;
@@ -32,6 +32,7 @@
   .techs__title {
     font-size: 18px;
     line-height: 21.78px;
+    padding: 0 0 26px 0;
   }
 }
 
@@ -45,9 +46,15 @@
   letter-spacing: -0.04em;
 }
 
+@media screen and (max-width: 768px) {
+  .techs__introduction-title {
+    margin: 81px 0 22px 0;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .techs__introduction-title {
-    margin-top: 60px;
+    margin: 60px 0 23px 0;
     font-size: 30px;
     line-height: 36.31px;
   }
@@ -64,35 +71,68 @@
   letter-spacing: -0.04em;
 }
 
+@media screen and (max-width: 768px) {
+  .techs__description {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
 @media screen and (max-width: 560px) {
   .techs__description {
     width: unset;
+    font-size: 11px;
+    line-height: 16px;
   }
 }
 
 .techs__dev-stack {
-  margin: 100px 0 0 0;
+  margin: 99px auto 0 auto;
+  padding: 0;
   display: flex;
   justify-content: center;
   gap: 10px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .techs__dev-stack {
-    margin: 50px 0 0 0;
-    flex-wrap: wrap;
+    margin: 82px auto 0 auto;
   }
 }
 
-.techs__dev-stack_item {
+@media screen and (max-width: 480px) {
+  .techs__dev-stack {
+    margin: 50px auto 0 auto;
+    justify-content: unset;
+    flex-wrap: wrap;
+    width: 178px;
+  }
+}
+
+.techs__dev-stack-item {
   background-color: #303030;
   border-radius: 10px;
   width: 90px;
   padding: 21px 0 22px 0;
+  list-style-type: none;
 
   text-align: center;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.94px;
   letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+  .techs__dev-stack-item {
+    width: 84px;
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .techs__dev-stack-item {
+    padding: 21px 0 22.5px 0;
+  }
 }

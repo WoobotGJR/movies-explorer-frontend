@@ -1,19 +1,19 @@
 .profile {
   width: 100%;
   background-color: #202020;
-  padding: 74px 0 70px 0;
+  padding: 70px 0 70px 0;
   display: flex;
 }
 
 @media screen and (max-width: 768px) {
   .profile {
-    padding: 236px 0 269px 0;
+    padding: 233px 0 269px 0;
   }
 }
 
 @media screen and (max-width: 674px) {
   .profile {
-    padding: 70px 0 40px 0;
+    padding: 67px 0 40px 0;
   }
 }
 
@@ -28,6 +28,18 @@
   text-align: center;
 
   margin: 0 0 123px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__title {
+    margin: 0 0 95px 0;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .profile__title {
+    margin: 0 0 79px 0;
+  }
 }
 
 .profile__name-container,
@@ -47,7 +59,7 @@
 }
 
 .profile__name-container {
-  padding: 0 0 16px 0;
+  padding: 0 0 18px 0;
   border-bottom: 1px solid #424242;
 }
 
@@ -63,25 +75,47 @@
   margin: 0;
 }
 
-.profile__user-name,
-.profile__user-email {
+.profile__user-name-input,
+.profile__user-email-input {
   font-weight: 400;
   font-size: 11px;
   line-height: 13.31px;
   margin: 0;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  text-align: right;
+}
+
+.profile__user-name-input:focus,
+.profile__user-email-input:focus {
+  outline: none;
+  box-shadow: 1px 1px 1px 1px #555454;
+}
+
+.profile__user-name-input::placeholder,
+.profile__user-email-input::placeholder {
+  color: inherit;
 }
 
 .profile__account-handle-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   margin: 220px 0 0 0;
   text-align: center;
 }
 
+@media screen and (max-width: 768px) {
+  .profile__account-handle-container {
+    margin: 210px 0 0 0;
+  }
+}
+
 @media screen and (max-width: 674px) {
   .profile__account-handle-container {
-    margin: 379px 0 0 0;
+    margin: 380px 0 0 0;
   }
 }
 
@@ -89,8 +123,13 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 15.73px;
+  color: inherit;
   cursor: pointer;
+
+  background: none;
+  border: none;
   margin: 0;
+  padding: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -111,8 +150,13 @@
   line-height: 15.73px;
   color: #ee3465;
   cursor: pointer;
+
+  background: none;
+  border: none;
+  padding: 0;
   margin: 0;
   transition: opacity 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 .profile__logout-btn:hover {
@@ -124,4 +168,9 @@
     font-size: 12px;
     line-height: 14.52px;
   }
+}
+
+.profile__logout-link {
+  text-decoration: none;
+  color: inherit;
 }

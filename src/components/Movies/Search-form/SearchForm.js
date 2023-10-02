@@ -15,7 +15,11 @@ function SearchForm() {
               src={findIcon}
               alt="Иконка поиска"
             ></img>
-            <input className="search-form__input" placeholder="Фильм"></input>
+            <input
+              className="search-form__input"
+              placeholder="Фильм"
+              required
+            ></input>
             <div className="search-form__enter-btn-container">
               <button className="search-form__enter-btn">Найти</button>
             </div>

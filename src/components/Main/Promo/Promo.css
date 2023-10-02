@@ -1,10 +1,9 @@
 .promo {
   position: relative;
-  height: 510px;
-  letter-spacing: -0.04em;
+  height: 556px;
   padding: 0 70px;
   background-color: #073042;
-  background-image: url("../../../images/promo-pic.png");
+  background-image: url("../../../images/promo-pic.svg");
   background-repeat: no-repeat;
   background-position: bottom 60px right 70px;
 }
@@ -13,7 +12,7 @@
   .promo {
     background-position: bottom 70px right 44px;
     background-size: calc(100% - 85px);
-    height: 544px;
+    height: 542px;
   }
 }
 
@@ -32,14 +31,17 @@
 
 @media screen and (max-width: 480px) {
   .promo {
+    padding: 180px 0 0 0;
+    height: calc(630px - 185px);
     background-size: 680px 230px;
     background-position: bottom 40px right 50%;
   }
 }
 
-.promo__text {
+.promo__title {
   margin: 0;
-  padding: 50px 0 0 0;
+  padding: 48px 0 0 0;
+  letter-spacing: -0.04em;
   max-width: 626px;
   min-width: 300px;
   font-size: 40px;
@@ -48,7 +50,7 @@
 }
 
 @media screen and (max-width: 768px) {
-  .promo__text {
+  .promo__title {
     margin: 0 auto;
     text-align: center;
     padding: 0;
@@ -56,17 +58,9 @@
 }
 
 @media screen and (max-width: 480px) {
-  .promo__text {
+  .promo__title {
     font-size: 31px;
     line-height: 39px;
     font-weight: 400;
   }
-}
-
-.promo__image {
-  position: absolute;
-  bottom: 60px;
-  right: 70px;
-  background-image: url("../../../images/promo-pic.png");
-  /* padding: 0 70px 0 0; */
 }

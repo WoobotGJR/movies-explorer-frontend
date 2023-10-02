@@ -1,5 +1,5 @@
 .search-form {
-  padding: 70px 70px 10px;
+  padding: 67px 70px 10px;
   color: #ffffff;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
   background-color: #202020;
@@ -7,19 +7,25 @@
 
 @media screen and (max-width: 768px) {
   .search-form {
-    padding: 70px 30px 10px;
+    padding: 77px 30px 10px;
   }
 }
 
 @media screen and (max-width: 674px) {
   .search-form {
-    padding: 70px 10px 10px;
+    padding: 76px 10px 10px;
   }
 }
 
 .search-form__form-container {
   border-bottom: 1px solid #424242;
   padding-bottom: 69px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form__form-container {
+    padding-bottom: 109px;
+  }
 }
 
 @media screen and (max-width: 674px) {
@@ -84,7 +90,11 @@
 }
 
 .search-form__input:focus {
-  outline: solid #202020 1px;
+  outline: none;
+  box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45),
+    25px 0px 20px -20px rgba(0, 0, 0, 0.45),
+    0px 25px 20px -20px rgba(0, 0, 0, 0.45),
+    0px 0px 20px 2px rgba(0, 0, 0, 0.45);
 }
 
 .search-form__input::placeholder {
@@ -92,6 +102,12 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 20px;
+}
+
+@media screen and (max-width: 674px) {
+  .search-form__input::placeholder {
+    font-size: 14px;
+  }
 }
 
 .search-form__enter-btn-container {
@@ -149,15 +165,15 @@
   padding: 27px 0 27px 29px;
 }
 
-/* @media screen and (max-width: 802px) {
-  .search-from__checkbox-field {
-    margin: 0 0 0 19px;
+@media screen and (max-width: 768px) {
+  .search-from__checkbox-container {
+    padding: 27px 0 27px 20px;
   }
-} */
+}
 
 @media screen and (max-width: 674px) {
   .search-from__checkbox-container {
-    padding: 45px 0 0 0;
+    padding: 47px 0 0 17px;
     border-radius: unset;
     background-color: inherit;
   }
@@ -166,7 +182,7 @@
 .search-form__tumb {
   background-color: #2be080;
   border-radius: 50%;
-  transform: translateX(18px);
+  transform: translateX(100%);
   transition: opacity 0.3s ease-in-out;
 }
 
@@ -181,8 +197,19 @@
   margin: 0 30px 0 0;
 }
 
+@media screen and (max-width: 674px) {
+  .search-form__tumb-paragraph {
+    font-size: 11px;
+  }
+}
+
 @media screen and (max-width: 802px) {
   .search-form__tumb-paragraph {
     margin: 0 20px 0 0;
   }
+}
+
+.search-form__tumb-container:hover .search-form__tumb {
+  background-color: #a0a0a0;
+  transform: translateX(0%);
 }
