@@ -7,12 +7,18 @@
   width: 50vw;
   visibility: hidden;
 
+  opacity: 0;
+  transition-property: opacity, visibility;
+  transition-duration: 0.35s, 0.35s;
+  transition-delay: 0s, 0s;
+
   color: #ffffff;
   font-family: "Inter", "Arial", "Helvetica", sans-serif;
 }
 
 .side-menu_visible {
   visibility: visible;
+  opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
