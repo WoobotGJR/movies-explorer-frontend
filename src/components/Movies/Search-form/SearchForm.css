@@ -1,7 +1,7 @@
 .search-form {
   padding: 67px 70px 10px;
   color: #ffffff;
-  font-family: "Inter", "Arial", "Helvetica", sans-serif;
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   background-color: #202020;
 }
 
@@ -180,10 +180,11 @@
 }
 
 .search-form__tumb {
-  background-color: #2be080;
+  background-color: #a0a0a0;
   border-radius: 50%;
-  transform: translateX(100%);
+  transform: translateX(0);
   transition: opacity 0.3s ease-in-out;
+  transition: transform 0.15s ease-in;
 }
 
 .search-form__tumb:hover {
@@ -209,7 +210,7 @@
   }
 }
 
-.search-form__tumb-container:hover .search-form__tumb {
-  background-color: #a0a0a0;
-  transform: translateX(0%);
+.search-form__tumb_active {
+  background-color: #2be080;
+  transform: translateX(100%);
 }

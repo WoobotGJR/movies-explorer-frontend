@@ -1,9 +1,39 @@
-import "./Login.css";
-import { NavLink } from "react-router-dom";
+import './Login.css';
+import { NavLink, useNavigate } from 'react-router-dom';
 
-import siteLogo from "../../../images/logo.svg";
+import siteLogo from '../../../images/logo.svg';
+import { useFormWithValidation } from '../../../hooks/useFormWithValidation';
+import mainApi from '../../../utils/MainApi';
+import { useState } from 'react';
+import errorHandler from '../../../utils/submitErrorHandler';
+import {
+  EMAIL_REGEX_PATTERN,
+  PASSWORD_REGEX_PATTERN,
+} from '../../../utils/constants';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
+  const { values, handleChange, errors, isValid } = useFormWithValidation({});
+  const [submitErrorText, setSubmitErrorText] = useState('');
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const { email, password } = values;
+
+    mainApi
+      .authorize(email, password)
+      .then((val) => {
+        console.log(val);
+        setIsLoggedIn(true);
+        navigate('/movies', { replace: true });
+      })
+      .catch((err) => {
+        setSubmitErrorText(errorHandler(err));
+        console.log(err.split(' ')[1]);
+      });
+  }
+
   return (
     <main>
       <section className="login">
@@ -12,44 +42,59 @@ function Login() {
             <img src={siteLogo} alt="Логотип сайта" />
           </NavLink>
           <h1 className="login__title">Рады видеть!</h1>
-          <form className="login__form">
+          <form className="login__form" onSubmit={handleSubmit}>
             <div className="login__input-field">
               <div className="login__input-container">
-                <label className="login__input-label" for="email">
+                <label className="login__input-label" htmlFor="email">
                   E-mail
                 </label>
                 <input
                   className="login__email-input login__input"
                   name="email"
                   id="email"
+                  onChange={handleChange}
+                  pattern={EMAIL_REGEX_PATTERN}
+                  title="Введён некорректный email"
                   placeholder="Введите email..."
                   minLength="2"
-                  maxLength="20"
+                  maxLength="30"
                   required
+                  type="email"
                 ></input>
-                <span className="login__input-error login__email-input-error">
-                  Что-то пошло не так...
+                <span className="login__input-error login__email-input-error login__error-text">
+                  {errors.email}
                 </span>
               </div>
               <div className="login__input-container">
-                <label className="login__input-label" for="password">
+                <label className="login__input-label" htmlFor="password">
                   Пароль
                 </label>
                 <input
                   className="login__password-input login__input"
                   name="password"
                   id="password"
+                  onChange={handleChange}
+                  pattern={PASSWORD_REGEX_PATTERN}
+                  title="Пароль должен содержать от 8 символов латиницей, из которых 1 цифра, 1 буква в верхнем регистре, 1 в нижнем"
                   placeholder="Введите пароль..."
                   minLength="2"
                   maxLength="20"
                   required
+                  type="password"
                 ></input>
-                <span className="login__input-error login__password-input-error">
-                  Что-то пошло не так...
+                <span className="login__input-error login__password-input-error login__error-text">
+                  {errors.password}
                 </span>
               </div>
             </div>
-            <button className="login__submit-btn" type="submit">
+            <span className="login__sumbit-error-text login__error-text">
+              {submitErrorText}
+            </span>
+            <button
+              className="login__submit-btn"
+              type="submit"
+              disabled={!isValid}
+            >
               Войти
             </button>
           </form>

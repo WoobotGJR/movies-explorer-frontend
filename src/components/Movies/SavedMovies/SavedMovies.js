@@ -1,9 +1,7 @@
-import './Movies.css';
+import SearchForm from '../Search-form/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-import SearchForm from './Search-form/SearchForm';
-import MoviesCardList from './MoviesCardList/MoviesCardList';
-
-function Movies({
+function SavedMovies({
   moviesArray,
   filteredMoviesArray,
   setFilteredMovies,
@@ -12,9 +10,7 @@ function Movies({
   tumbState,
   setTumbState,
   deviceWidth,
-  likeMovie,
   removeMovie,
-  searchFormError,
 }) {
   return (
     <main className="movies">
@@ -31,12 +27,10 @@ function Movies({
         filteredMoviesArray={filteredMoviesArray}
         isLoading={isLoading}
         deviceWidth={deviceWidth}
-        likeMovie={likeMovie}
         removeMovie={removeMovie}
-        searchFormError={searchFormError}
       />
     </main>
   );
 }
 
-export default Movies;
+export default SavedMovies;
