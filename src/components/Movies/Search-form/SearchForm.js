@@ -3,90 +3,47 @@ import './SearchForm.css';
 import findIcon from '../../../images/find-icon.svg';
 import tumbIcon from '../../../images/tumb-icon.svg';
 
-import { useForm } from '../../../hooks/useForm';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useFormWithValidation } from '../../../hooks/useFormWithValidation';
+import { getLocalStorageItem } from '../../../utils/localStorageHandlers';
 
-function SearchForm({
-  setFilteredMovies,
-  moviesArray,
-  filteredArray,
-  tumbState,
-  setTumbState,
-  setIsLoading,
-}) {
-  const { values, handleChange } = useForm({});
+function SearchForm({ onSubmit, onCheckboxClick }) {
+  const { values, handleChange } = useFormWithValidation({});
+  const [checkboxState, setCheckboxState] = useState(false);
+
   const location = useLocation();
 
-  const tumbClass = tumbState
+  const checkboxClass = checkboxState
     ? 'search-form__tumb search-form__tumb_active'
     : 'search-form__tumb';
 
   useEffect(() => {
     if (location.pathname === '/movies') {
-      values.searchBar = localStorage.getItem('lastRequest') ?? '';
-      setTumbState(localStorage.getItem('tumbState') === 'true');
+      const storedCheckboxState = getLocalStorageItem('formCheckboxState');
+      values.searchBar = getLocalStorageItem('searchString');
+
+      setCheckboxState(storedCheckboxState);
     } else {
       values.searchBar = '';
-      setTumbState(false);
     }
-    setFilteredMovies(moviesArray);
   }, []);
 
-  function handleTumbFilter(event) {
-    if (!tumbState) {
-      localStorage.setItem('tumbState', 'true');
-      setTumbState(true);
-      const filteredTumbArray = filteredArray.filter((movie) => {
-        return movie.duration <= 40;
-      });
-      if (location.pathname === '/movies') {
-        localStorage.setItem(
-          'lastFilmsArray',
-          JSON.stringify(filteredTumbArray)
-        );
-      }
-      setFilteredMovies(filteredTumbArray);
-    } else {
-      localStorage.setItem('tumbState', false);
-      setTumbState(false);
-      filterMoviesArray(event);
-    }
+  function handleInputSubmit(event) {
+    event.preventDefault();
+    onSubmit(checkboxState, values.searchBar);
   }
 
-  function filterMoviesArray(event) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    // Save last input request, to display it on page reload
-    if (location.pathname === '/movies') {
-      localStorage.setItem('lastRequest', values.searchBar);
-    }
-
-    // Filter array with a string from input
-    const filteredArray = moviesArray.filter((movie) => {
-      console.log(values.searchBar);
-      const searchStr = values.searchBar.trim().toLowerCase();
-      const matchStr = movie.nameRU.toLowerCase().includes(searchStr);
-
-      return matchStr;
-    });
-
-    // Save last filtered array, to display it on page reload
-    if (location.pathname === '/movies') {
-      localStorage.setItem('lastFilmsArray', JSON.stringify(filteredArray));
-    }
-
-    setIsLoading(false);
-    setTumbState(false);
-
-    setFilteredMovies(filteredArray);
+  function handleCheckboxClick() {
+    const newCheckboxState = !checkboxState;
+    setCheckboxState(newCheckboxState);
+    onCheckboxClick(newCheckboxState, values.searchBar);
   }
 
   return (
     <section className="search-form">
       <div className="search-form__form-container">
-        <form className="search-form__form" onSubmit={filterMoviesArray}>
+        <form className="search-form__form" onSubmit={handleInputSubmit}>
           {/* Начало формы */}
           <div className="search-form__input-container">
             <img
@@ -96,24 +53,25 @@ function SearchForm({
             ></img>
             <input
               className="search-form__input"
+              type=""
               placeholder="Фильм"
               name="searchBar"
+              defaultValue={values.searchBar}
               onChange={handleChange}
-              defaultValue={localStorage?.lastRequest}
-              // required
+              required
             ></input>
             <div className="search-form__enter-btn-container">
               <button className="search-form__enter-btn">Найти</button>
             </div>
           </div>
 
-          <div className="search-from__checkbox-container">
-            <div
-              className="search-form__tumb-container"
-              onClick={handleTumbFilter}
-            >
+          <div
+            className="search-from__checkbox-container"
+            onClick={handleCheckboxClick}
+          >
+            <div className="search-form__tumb-container">
               <img
-                className={tumbClass}
+                className={checkboxClass}
                 src={tumbIcon}
                 alt="Тумблер переключения"
               ></img>

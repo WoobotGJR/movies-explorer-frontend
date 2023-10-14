@@ -9,6 +9,8 @@ import errorHandler from '../../../utils/submitErrorHandler';
 import {
   EMAIL_REGEX_PATTERN,
   PASSWORD_REGEX_PATTERN,
+  PASSWORD_VALIDATION_TITLE,
+  EMAIL_VALIDATION_TITLE,
 } from '../../../utils/constants';
 
 function Login({ setIsLoggedIn }) {
@@ -54,7 +56,7 @@ function Login({ setIsLoggedIn }) {
                   id="email"
                   onChange={handleChange}
                   pattern={EMAIL_REGEX_PATTERN}
-                  title="Введён некорректный email"
+                  title={EMAIL_VALIDATION_TITLE}
                   placeholder="Введите email..."
                   minLength="2"
                   maxLength="30"
@@ -75,7 +77,7 @@ function Login({ setIsLoggedIn }) {
                   id="password"
                   onChange={handleChange}
                   pattern={PASSWORD_REGEX_PATTERN}
-                  title="Пароль должен содержать от 8 символов латиницей, из которых 1 цифра, 1 буква в верхнем регистре, 1 в нижнем"
+                  title={PASSWORD_VALIDATION_TITLE}
                   placeholder="Введите пароль..."
                   minLength="2"
                   maxLength="20"

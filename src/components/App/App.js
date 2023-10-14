@@ -17,14 +17,13 @@ import ProtectedRoute from '../Other/ProtectedRoute/ProtectedRoute';
 import { useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
-import moviesApi from '../../utils/MoviesApi';
-import errorHandler from '../../utils/submitErrorHandler';
+
+import { INITTIAL_MESSAGE } from '../../utils/constants';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [menuState, setMenuState] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [tumbState, setTumbState] = useState(false);
 
   const [currentUser, setCurrentUser] = useState({});
 
@@ -34,7 +33,7 @@ function App() {
   const [filteredSavedMovies, setFilteredSavedMovies] = useState([]);
 
   const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
-  const [searchFormError, setSearchFormError] = useState('');
+  const [searchFormSpan, setSearchFormSpan] = useState('');
 
   const navigate = useNavigate();
 
@@ -69,54 +68,7 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  // Request for movies list on mount
-  useEffect(() => {
-    if (isLoggedIn) {
-      moviesApi
-        .getMovies()
-        .then((res) => {
-          // Set movies from API
-          setMovies(res);
-          console.log(res);
-          // Set movies from local storage (last request before reload)
-          if (localStorage['lastFilmsArray']) {
-            setFilteredMovies(JSON.parse(localStorage['lastFilmsArray']));
-          }
-          setSearchFormError('');
-        })
-        .catch((err) => {
-          setSearchFormError(errorHandler(err));
-          console.log(err);
-        });
-    } else {
-      setMovies([]);
-    }
-  }, [isLoggedIn]);
-
-  function getSavedMoviesArray() {
-    if (isLoggedIn) {
-      mainApi
-        .getSavedMovies()
-        .then((res) => {
-          // Needed for sorting by input
-          setSavedMovies(res.data);
-          // Needed to display saved movies on component mount
-          setFilteredSavedMovies(res.data);
-          // console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      setSavedMovies([]);
-    }
-  }
-
   // Request for saved movies list on mount
-  useEffect(() => {
-    getSavedMoviesArray();
-  }, [isLoggedIn]);
-
   useEffect(() => {
     const handleWindowResize = () => {
       setDeviceWidth(window.innerWidth);
@@ -127,38 +79,30 @@ function App() {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, []);
+  }, [deviceWidth]);
 
-  function removeMovie(movieId) {
-    return mainApi
-      .deleteMovie(movieId)
-      .then((res) => {
-        getSavedMoviesArray();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async function getSavedMovies() {
+    try {
+      const res = await mainApi.getSavedMovies();
+      setFilteredSavedMovies(res.data);
+      setSavedMovies(res.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function likeMovie(options) {
-    return mainApi
-      .saveMovie({
-        country: options.country,
-        director: options.director,
-        duration: options.duration,
-        year: options.year,
-        description: options.description,
-        image: options.image,
-        trailerLink: options.trailerLink,
-        nameRU: options.nameRU,
-        nameEN: options.nameEN,
-        thumbnail: options.thumbnail,
-        movieId: options.movieId,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  }
+  // On mount of component we get saved movies from API
+  useEffect(() => {
+    if (isLoggedIn) {
+      getSavedMovies();
+    }
+  }, [isLoggedIn]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      setSearchFormSpan(INITTIAL_MESSAGE);
+    }
+  }, [isLoggedIn]);
 
   function showMenu() {
     setMenuState(true);
@@ -182,17 +126,16 @@ function App() {
                 element={Movies}
                 isLoggedIn={isLoggedIn}
                 moviesArray={movies}
-                filteredMoviesArray={filteredMovies}
-                setFilteredMovies={setFilteredMovies}
                 setMovies={setMovies}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-                tumbState={tumbState}
-                setTumbState={setTumbState}
+                setFilteredMovies={setFilteredMovies}
+                filteredMovies={filteredMovies}
                 deviceWidth={deviceWidth}
-                likeMovie={likeMovie}
-                removeMovie={removeMovie}
-                searchFormError={searchFormError}
+                setIsLoading={setIsLoading}
+                isLoading={isLoading}
+                searchFormSpan={searchFormSpan}
+                setSearchFormSpan={setSearchFormSpan}
+                setSavedMovies={setSavedMovies}
+                savedMovies={savedMovies}
               />
             }
           ></Route>
@@ -202,16 +145,11 @@ function App() {
               <ProtectedRoute
                 element={SavedMovies}
                 isLoggedIn={isLoggedIn}
-                moviesArray={savedMovies}
-                filteredMoviesArray={filteredSavedMovies}
-                setFilteredMovies={setFilteredSavedMovies}
-                setMovies={setSavedMovies}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading}
-                tumbState={tumbState}
-                setTumbState={setTumbState}
-                deviceWidth={deviceWidth}
-                removeMovie={removeMovie}
+                savedMovies={savedMovies}
+                setSavedMovies={setSavedMovies}
+                filteredSavedMovies={filteredSavedMovies}
+                setFilteredSavedMovies={setFilteredSavedMovies}
+                getSavedMovies={getSavedMovies}
               />
             }
           ></Route>

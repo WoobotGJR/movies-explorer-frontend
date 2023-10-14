@@ -6,6 +6,7 @@ import mainApi from '../../../utils/MainApi';
 import { useContext, useEffect, useReducer } from 'react';
 import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import { EMAIL_REGEX_PATTERN } from '../../../utils/constants';
+import { deleteLocalStorageItem } from '../../../utils/localStorageHandlers';
 
 function Profile({ setIsLoggedIn, setFilteredMovies }) {
   const { handleChange, values, setValues, errors, isValid } =
@@ -43,8 +44,11 @@ function Profile({ setIsLoggedIn, setFilteredMovies }) {
       .logout()
       .then(() => {
         setIsLoggedIn(false);
-        localStorage.removeItem('lastRequest');
-        localStorage.removeItem('lastFilmsArray');
+
+        deleteLocalStorageItem('formCheckboxState');
+        deleteLocalStorageItem('searchString');
+        deleteLocalStorageItem('filteredMovies');
+        deleteLocalStorageItem('requestedMovies');
         setFilteredMovies([]);
       })
       .catch((err) => {
