@@ -1,6 +1,5 @@
 import SearchForm from '../Search-form/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { findSavedMovieId } from '../../../utils/findSavedMovieId';
 import mainApi from '../../../utils/MainApi';
 
 import { useReducer, useEffect } from 'react';

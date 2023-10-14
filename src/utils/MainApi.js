@@ -1,6 +1,6 @@
 class MainApi {
   constructor() {
-    this._baseUrl = 'http://localhost:3000';
+    this._baseUrl = 'https://api.woobotgjr.movies.nomoredomainsrocks.ru';
   }
 
   _checkResponseStatus(res) {
