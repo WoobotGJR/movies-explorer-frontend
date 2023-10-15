@@ -3,8 +3,7 @@ import './MoviesCard.css';
 import deleteBtnImg from '../../../images/delete-button.svg';
 
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect, useReducer } from 'react';
-import { getLocalStorageItem } from '../../../utils/localStorageHandlers';
+import { useState, useEffect } from 'react';
 import { findSavedMovieId } from '../../../utils/findSavedMovieId';
 
 function MoviesCard({
@@ -38,7 +37,6 @@ function MoviesCard({
       if (savedMovies.some((movie) => movie.movieId === movieId)) {
         setIsLiked(true);
         setSavedMovies(savedMovies);
-        console.log(savedMovies);
       }
     }
   }, [movieId, location.pathname, savedMovies]);
