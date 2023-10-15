@@ -8,6 +8,7 @@ import { SERVER_URL } from '../../../utils/constants';
 function MoviesCardList({
   filteredMovies,
   savedMovies,
+  setSavedMovies,
   onMoreButtonClick,
   isMoreButtonVisible,
   handleLikeMovie,
@@ -41,6 +42,7 @@ function MoviesCardList({
                   onDislikeMovie={handleDislikeMovie}
                   onLikeMovie={handleLikeMovie}
                   savedMovies={savedMovies}
+                  setSavedMovies={setSavedMovies}
                 />
               </li>
             );

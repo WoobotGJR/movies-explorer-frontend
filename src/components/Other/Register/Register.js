@@ -9,8 +9,6 @@ import { useState } from 'react';
 import errorHandler from '../../../utils/submitErrorHandler';
 import {
   EMAIL_REGEX_PATTERN,
-  PASSWORD_REGEX_PATTERN,
-  PASSWORD_VALIDATION_TITLE,
   EMAIL_VALIDATION_TITLE,
 } from '../../../utils/constants';
 
@@ -97,10 +95,8 @@ function Register() {
                   name="password"
                   id="password"
                   onChange={handleChange}
-                  pattern={PASSWORD_REGEX_PATTERN}
-                  title={PASSWORD_VALIDATION_TITLE}
                   placeholder="Введите пароль..."
-                  minLength="2"
+                  minLength="8"
                   maxLength="20"
                   required
                 ></input>

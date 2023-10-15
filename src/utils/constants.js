@@ -28,6 +28,7 @@ const TABLET_ADDITIONAL_CARDS = 2;
 const MOBILE_ADDITIONAL_CARDS = 2;
 
 const INITTIAL_MESSAGE = 'Введите поисковой запрос, чтобы получить результат.';
+const NOT_FOUND_MESSAGE = 'По Вашему запросу ничего не найдено.';
 
 const INTERNAL_SERVER_ERROR_MSG =
   'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
@@ -50,4 +51,5 @@ export {
   EMAIL_VALIDATION_TITLE,
   PASSWORD_VALIDATION_TITLE,
   INITTIAL_MESSAGE,
+  NOT_FOUND_MESSAGE,
 };

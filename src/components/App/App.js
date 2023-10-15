@@ -18,7 +18,8 @@ import { useEffect, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import mainApi from '../../utils/MainApi';
 
-import { INITTIAL_MESSAGE } from '../../utils/constants';
+import { getLocalStorageItem } from '../../utils/localStorageHandlers';
+import { INITTIAL_MESSAGE, NOT_FOUND_MESSAGE } from '../../utils/constants';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -99,6 +100,9 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
+    if (getLocalStorageItem('filteredMovies').length === 0) {
+      setSearchFormSpan(NOT_FOUND_MESSAGE);
+    }
     if (isLoggedIn) {
       setSearchFormSpan(INITTIAL_MESSAGE);
     }

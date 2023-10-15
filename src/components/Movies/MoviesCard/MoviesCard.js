@@ -1,8 +1,11 @@
 import './MoviesCard.css';
 
 import deleteBtnImg from '../../../images/delete-button.svg';
+
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
+import { getLocalStorageItem } from '../../../utils/localStorageHandlers';
+import { findSavedMovieId } from '../../../utils/findSavedMovieId';
 
 function MoviesCard({
   movieAltText,
@@ -22,6 +25,7 @@ function MoviesCard({
   onDislikeMovie,
   onRemoveMovie,
   savedMovies,
+  setSavedMovies,
 }) {
   const location = useLocation();
   const [isLiked, setIsLiked] = useState(false);
@@ -33,19 +37,25 @@ function MoviesCard({
     if (location.pathname === '/movies') {
       if (savedMovies.some((movie) => movie.movieId === movieId)) {
         setIsLiked(true);
+        setSavedMovies(savedMovies);
+        console.log(savedMovies);
       }
     }
-  }, [savedMovies, savedMovieId]);
+  }, [movieId, location.pathname, savedMovies]);
 
   function handleMovieLike() {
     if (isLiked) {
-      onDislikeMovie(movieId).then(() => {
-        setIsLiked(false);
-      });
+      const savedMovieId = findSavedMovieId(savedMovies, movieId);
+
+      onDislikeMovie(savedMovieId)
+        .then((res) => {
+          setIsLiked(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       return;
     }
-    console.log('like');
-
     onLikeMovie({
       country: movieCountry,
       director: movieDirector,
@@ -68,11 +78,9 @@ function MoviesCard({
   }
 
   function handleMovieDelete() {
-    console.log(savedMovieId);
     onRemoveMovie(savedMovieId)
-      .then(() => {
+      .then((res) => {
         setIsLiked(false);
-        console.log('deleted');
       })
       .catch((err) => {
         console.log(err);

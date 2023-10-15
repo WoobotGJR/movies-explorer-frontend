@@ -16,8 +16,6 @@ import {
   filterMoviesByString,
 } from '../../utils/filterFuncs';
 
-import { findSavedMovieId } from '../../utils/findSavedMovieId';
-
 import {
   DESKTOP_ADDTIONAL_CARDS,
   DESKTOP_DISPLAY_WIDTH,
@@ -29,6 +27,7 @@ import {
   TABLET_ADDITIONAL_CARDS,
   TABLET_DISPLAY_WIDTH,
   TABLET_INITIAL_CARDS_COUNT,
+  NOT_FOUND_MESSAGE,
 } from '../../utils/constants';
 import mainApi from '../../utils/MainApi';
 
@@ -53,8 +52,6 @@ function Movies({
   const checkboxState = getLocalStorageItem('formCheckboxState');
 
   const filteredMoviesLength = getLocalStorageItem('filteredMovies').length;
-
-  // console.log(filteredMoviesLength, currentCardsCount, initialCardsCount);
 
   const isMoreButtonVisible =
     currentCardsCount - additionalCards <= filteredMoviesLength;
@@ -83,7 +80,8 @@ function Movies({
 
   useEffect(() => {
     const storedFilteredMovies = getLocalStorageItem('filteredMovies');
-    if (storedFilteredMovies) {
+
+    if (storedFilteredMovies.length !== 0) {
       setSearchFormSpan('');
       setFilteredMovies(storedFilteredMovies.slice(0, initialCardsCount));
     }
@@ -109,9 +107,13 @@ function Movies({
       setLocalStorageItem('searchString', searchString);
 
       if (formCheckboxState) {
+        filteredShortFilmsArray.length === 0 &&
+          setSearchFormSpan(NOT_FOUND_MESSAGE);
         setFilteredMovies(filteredShortFilmsArray.slice(0, initialCardsCount));
         setLocalStorageItem('filteredMovies', filteredShortFilmsArray);
       } else {
+        filteredMoviesArray.length === 0 &&
+          setSearchFormSpan(NOT_FOUND_MESSAGE);
         setFilteredMovies(filteredMoviesArray.slice(0, initialCardsCount));
         setLocalStorageItem('filteredMovies', filteredMoviesArray);
       }
@@ -144,7 +146,8 @@ function Movies({
         ...options,
       })
       .then((res) => {
-        setSavedMovies([...savedMovies, res]);
+        const updatedSavedMovies = [...savedMovies, res.data];
+        setSavedMovies(updatedSavedMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -152,11 +155,13 @@ function Movies({
   }
 
   function handleDislikeMovie(movieId) {
-    const foundedId = findSavedMovieId(savedMovies, movieId);
     return mainApi
-      .deleteMovie()
+      .deleteMovie(movieId)
       .then((res) => {
-        setSavedMovies(savedMovies.filter((item) => item.id !== foundedId));
+        const updatedSavedMovies = savedMovies.filter(
+          (item) => item.id === movieId
+        );
+        setSavedMovies(updatedSavedMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -178,6 +183,7 @@ function Movies({
         <MoviesCardList
           filteredMovies={filteredMovies}
           savedMovies={savedMovies}
+          setSavedMovies={setSavedMovies}
           onMoreButtonClick={handleMoreButtonClick}
           currentCardsCount={currentCardsCount}
           isMoreButtonVisible={isMoreButtonVisible}
