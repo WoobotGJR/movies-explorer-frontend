@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Header from '../header/Header';
 import Main from '../Main/main';
@@ -36,8 +36,6 @@ function App() {
   const [deviceWidth, setDeviceWidth] = useState(window.innerWidth);
   const [searchFormSpan, setSearchFormSpan] = useState('');
 
-  const navigate = useNavigate();
-
   // Auto-login by JWT token on cookie
   useEffect(() => {
     mainApi
@@ -45,13 +43,12 @@ function App() {
       .then((val) => {
         if (val) {
           setIsLoggedIn(true);
-          navigate('/movies', { replace: true });
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [isLoggedIn]);
 
   // Request for user data on login
   useEffect(() => {
@@ -170,9 +167,16 @@ function App() {
           ></Route>
           <Route
             path="/signin"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            element={
+              <Login setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+            }
           ></Route>
-          <Route path="/signup" element={<Register />}></Route>
+          <Route
+            path="/signup"
+            element={
+              <Register setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />
+            }
+          ></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
         <Footer />

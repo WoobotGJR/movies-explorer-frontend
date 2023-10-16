@@ -8,6 +8,7 @@ import {
   filterMoviesByDuration,
   filterMoviesByString,
 } from '../../../utils/filterFuncs';
+import { getLocalStorageItem, setLocalStorageItem } from '../../../utils/localStorageHandlers';
 
 function SavedMovies({
   isLoggedIn,
@@ -21,19 +22,23 @@ function SavedMovies({
   // On mount of component we get saved movies from API
   useEffect(() => {
     if (isLoggedIn) {
-      getSavedMovies();
+      setSavedMovies(getSavedMovies());
     }
-  }, [isLoggedIn, updateCounter]);
+  }, [isLoggedIn]);
 
-  function handleRemoveMovie(movieId) {
+  useEffect(() => {
+    setFilteredSavedMovies(getLocalStorageItem('filteredSavedMovies') || []);
+  }, [updateCounter]);
+
+    function handleRemoveMovie(movieId) {
     return mainApi
       .deleteMovie(movieId)
       .then((res) => {
-        setSavedMovies(
-          savedMovies.filter((item) => {
-            return item._id !== res.data._id;
-          })
-        );
+        const filteredSavedMovies = savedMovies.filter((item) => {
+          return item._id !== res.data._id;
+        });
+        setSavedMovies(filteredSavedMovies);
+        setLocalStorageItem('filteredSavedMovies', filteredSavedMovies);
         forceUpdate();
       })
       .catch((err) => {

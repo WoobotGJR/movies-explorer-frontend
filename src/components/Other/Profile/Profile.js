@@ -7,10 +7,14 @@ import { useContext, useEffect, useReducer } from 'react';
 import { CurrentUserContext } from '../../../contexts/CurrentUserContext';
 import { EMAIL_REGEX_PATTERN } from '../../../utils/constants';
 import { deleteLocalStorageItem } from '../../../utils/localStorageHandlers';
+import submitErrorHandler from '../../../utils/submitErrorHandler';
+import { useState } from 'react';
 
 function Profile({ setIsLoggedIn, setFilteredMovies }) {
-  const { handleChange, values, setValues, errors, isValid } =
+  const { handleChange, values, setValues, errors, isValid, setIsValid } =
     useFormWithValidation({});
+  const [submitErrorText, setSubmitErrorText] = useState('');
+  const [submitSuccessText, setSubmitSuccessText] = useState('');
   const [_, forceUpdate] = useReducer((x) => x + 1, 0);
   const currentUser = useContext(CurrentUserContext);
 
@@ -22,19 +26,37 @@ function Profile({ setIsLoggedIn, setFilteredMovies }) {
     });
   }, [currentUser]);
 
+  useEffect(() => {
+    if (
+      values.email === currentUser.email &&
+      values.name === currentUser.name
+    ) {
+      setIsValid(false);
+    } else {
+      setIsValid(isValid);
+      setSubmitErrorText('');
+      setSubmitSuccessText('');
+    }
+  }, [values]);
+
   function editUserData(event) {
     event.preventDefault();
 
-    console.log(values);
-
+    setIsValid(false);
     mainApi
       .setUserInfo(values.name, values.email)
       .then((res) => {
         // The next two lines are needed for profile__title update on successful sumbit
         currentUser.name = res.data.name;
+        currentUser.email = res.data.email;
         forceUpdate();
+        setSubmitErrorText('');
+        setSubmitSuccessText('Данные успешно изменены!');
       })
       .catch((err) => {
+        setIsValid(false);
+        setSubmitSuccessText('');
+        setSubmitErrorText(submitErrorHandler(err));
         console.log(`Profile - ${err}`);
       });
   }
@@ -49,6 +71,7 @@ function Profile({ setIsLoggedIn, setFilteredMovies }) {
         deleteLocalStorageItem('searchString');
         deleteLocalStorageItem('filteredMovies');
         deleteLocalStorageItem('requestedMovies');
+        deleteLocalStorageItem('filteredSavedMovies');
         setFilteredMovies([]);
       })
       .catch((err) => {
@@ -112,7 +135,12 @@ function Profile({ setIsLoggedIn, setFilteredMovies }) {
             >
               Редактировать
             </button>
-
+            <span className="profile__validation-submit-success-text">
+              {submitSuccessText}
+            </span>
+            <span className="profile__validation-submit-error-text">
+              {submitErrorText}
+            </span>
             <button className="profile__logout-btn" type="button">
               <NavLink
                 to="/"

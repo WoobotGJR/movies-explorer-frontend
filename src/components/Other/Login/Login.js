@@ -4,23 +4,34 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import siteLogo from '../../../images/logo.svg';
 import { useFormWithValidation } from '../../../hooks/useFormWithValidation';
 import mainApi from '../../../utils/MainApi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import errorHandler from '../../../utils/submitErrorHandler';
 import {
   EMAIL_REGEX_PATTERN,
   EMAIL_VALIDATION_TITLE,
 } from '../../../utils/constants';
 
-function Login({ setIsLoggedIn }) {
-  const { values, handleChange, errors, isValid } = useFormWithValidation({});
+function Login({ setIsLoggedIn, isLoggedIn }) {
+  const { values, handleChange, errors, isValid, setIsValid } =
+    useFormWithValidation({});
   const [submitErrorText, setSubmitErrorText] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/movies', { replace: true });
+    }
+  });
+
+  useEffect(() => {
+    setSubmitErrorText('');
+  }, [values]);
 
   function handleSubmit(event) {
     event.preventDefault();
 
     const { email, password } = values;
-
+    setIsValid(false);
     mainApi
       .authorize(email, password)
       .then((val) => {
@@ -30,7 +41,7 @@ function Login({ setIsLoggedIn }) {
       })
       .catch((err) => {
         setSubmitErrorText(errorHandler(err));
-        console.log(err.split(' ')[1]);
+        setIsValid(false);
       });
   }
 
