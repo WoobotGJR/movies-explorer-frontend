@@ -1,0 +1,15 @@
+@import url('./vendor/normalize.css');
+
+@import url('./vendor/fonts/fonts.css');
+
+body {
+  background-color: #202020;
+}
+
+/* Changing data autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px rgba(31, 27, 27, 0.515) inset !important;
+}

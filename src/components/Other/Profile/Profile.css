@@ -1,0 +1,244 @@
+.profile {
+  width: 100%;
+  background-color: #202020;
+  padding: 70px 0 70px 0;
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    padding: 233px 0 269px 0;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .profile {
+    padding: 67px 0 40px 0;
+  }
+}
+
+.profile__container {
+  margin: 0 auto;
+}
+
+.profile__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29.05px;
+  text-align: center;
+
+  margin: 0 0 123px 0;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__title {
+    margin: 0 0 95px 0;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .profile__title {
+    margin: 0 0 79px 0;
+  }
+}
+
+.profile__name-container,
+.profile__email-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 410px;
+}
+
+@media screen and (max-width: 674px) {
+  .profile__name-container,
+  .profile__email-container {
+    width: 260px;
+  }
+}
+
+.profile__name-container {
+  padding: 0 0 18px 0;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__email-container {
+  padding: 17px 0 0 0;
+}
+
+.profile__name-span,
+.profile__email-span {
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13.31px;
+  margin: 0;
+}
+
+.profile__user-name-input,
+.profile__user-email-input {
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13.31px;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  text-align: right;
+}
+
+.profile__user-name-input:focus,
+.profile__user-email-input:focus {
+  outline: none;
+  box-shadow: 1px 1px 1px 1px #555454;
+}
+
+.profile__user-name-input::placeholder,
+.profile__user-email-input::placeholder {
+  color: inherit;
+}
+
+.profile__account-handle-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 220px 0 0 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__account-handle-container {
+    margin: 210px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .profile__account-handle-container {
+    margin: 380px 0 0 0;
+  }
+}
+
+.profile__edit-info-btn {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: inherit;
+  cursor: pointer;
+
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.profile__edit-info-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.profile__edit-info-btn:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 674px) {
+  .profile__edit-info-btn {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+
+.profile__logout-btn {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15.73px;
+  color: #ee3465;
+  cursor: pointer;
+
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: opacity 0.3s ease-in-out;
+  text-decoration: none;
+}
+
+.profile__logout-btn:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 674px) {
+  .profile__logout-btn {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+
+.profile__logout-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.profile__validation-error-text {
+  width: 396px;
+
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 10px;
+  position: absolute;
+  transform: translate(0, 15px);
+}
+
+/* @media screen and (max-width: 768px) {
+  .profile__validation-error-text {
+    width: 260px;
+  }
+} */
+
+@media screen and (max-width: 674px) {
+  .profile__validation-error-text {
+    font-size: 9px;
+    line-height: 9px;
+    width: 260px;
+  }
+}
+
+.profile__validation-submit-error-text {
+  width: 396px;
+  color: #ee3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 10px;
+  position: absolute;
+  transform: translate(10px, -20px);
+}
+
+@media screen and (max-width: 674px) {
+  .profile__validation-submit-error-text {
+    font-size: 9px;
+    line-height: 9px;
+    width: 260px;
+    transform: translate(0px, -20px);
+  }
+}
+
+.profile__validation-submit-success-text {
+  width: 396px;
+  color: rgb(19, 210, 19);
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 10px;
+  position: absolute;
+  transform: translate(10px, -20px);
+}
+
+@media screen and (max-width: 674px) {
+  .profile__validation-submit-success-text {
+    font-size: 9px;
+    line-height: 9px;
+    width: 260px;
+    transform: translate(0px, -20px);
+  }
+}

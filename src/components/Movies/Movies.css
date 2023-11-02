@@ -1,0 +1,33 @@
+.movies {
+  margin: auto;
+}
+
+.movies__span-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #8b8b8b;
+
+  display: flex;
+  justify-content: center;
+  margin: 75px auto;
+  width: 60%;
+}
+
+@media screen and (max-width: 674px) {
+  .movies__span-text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .movies__span-text {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .movies__span-text {
+    font-size: 10px;
+  }
+}
