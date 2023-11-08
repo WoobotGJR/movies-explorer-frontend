@@ -1,4 +1,4 @@
-<h1 align="center">Дипломный проект: "Movies Explorer" (frontend)</h1>
+<h1 align="center">Дипломный проект: "Movies-Explorer" (frontend)</h1>
 
 <a name="summary">
   <details>
